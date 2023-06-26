@@ -1,0 +1,7 @@
+{
+ "partitions" :[
+   {"topic" : "test-topic", "partition" :0, "replicas" : [1,2,3]},
+   {"topic" : "test-topic", "partition" :1, "replicas" : [1,2,3]},
+   {"topic" : "test-topic", "partition" :2, "replicas" : [1,2,3]} 
+ ]
+}
