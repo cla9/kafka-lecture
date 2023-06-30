@@ -1,6 +1,6 @@
  #! /bin/bash
 
-bash ../util/check_variable.sh
+bash ./util/check_variable.sh
 
 if [ $# -ne 1 ]; then
   echo "Please insert postive offset number"
