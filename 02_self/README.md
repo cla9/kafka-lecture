@@ -152,14 +152,118 @@ cd ..
 
 > Partition 개수가 지정된 Topic 생성 및 생성 정보 확인 목적
 
+<br>
+
+1. 실습 디렉토리 이동
+
+```
+cd 02_topic
+```
+
+<br>
+
+2. Topic 생성
+
+```
+./01_create_topic.sh
+```
+
+<br>
+
+Partition 3개에 Replication Factor 3으로 지정되어 총 3개의 Partition Leader와 6개의 Follower로 구성된 Replica가 생성된다.
+
+<br>
+
+3. Topic 정보 확인
+
+```
+./02_describe_topic.sh
+```
+
+<br>
+
+Topic Partition 갯수, Replication Factor 갯수 각 Partition 별 Leader 정보와 Replicas, Isr 정보 확인 가능
+
+<br>
+
+4. Topic 상세 설정 확인
+
+```
+./03_describe_topic_config.sh
+```
+
+<br>
+
+해당 토픽에 지정된 설정 값 전부를 보여줌
+
+<br>
+
+5. Topic 설정 변경
+
+```
+./04_add_topic_config.sh
+```
+
+<br>
+
+Topic에 지정된 설정 변경함. 위 코드는 index.interval.bytes 값을 기본 4096에서 1024로 변경하는 예제 프로그램
+
+<br>
+
+6. Dynamic Topic 변경 내용 확인
+
+```
+./05_describe_topic_dynamic_config.sh
+```
+
+<br>
+
+동적으로 설정 변경된 값 확인 가능
+
+<br>
+
+7. Topic 설정 변경 내용 삭제
+
+```
+./06_remove_topic_config.sh
+```
+
+<br>
+
+동적으로 설정 변경한 값 삭제함. 삭제하면 해당 값은 기본 값으로 변경됨
+
+<br>
+
+8. Topic 변경 삭제 후 Dynamic topic 변경 내용 확인
+
+```
+./05_describe_topic_dynamic_config.sh
+```
+
+<br>
+
+동적으로 설정 변경 삭제한 이후 6번 과정 재수행하면, index.interval.bytes 변경 값이 기본 값으로 변경되었으므로 더 이상 조회되지 않음
+
+<br>
+
+
+
+
+
 ## 3. Preferred Leader Election 수행하기
 
 > 임의로 Broker 중단 하여 Leader Skew 상황 만든 다음 수동으로 Preferred Leader Election 수행 목적
+
+<br>
 
 ## 4. Partition Reassign 수동 실습하기
 
 > 수동으로 Partition Reassign을 통해서 Broker Skew 상황 만들기 목적
 
+<br>
+
 ## 5. Produce 내용 적재된 Log 파일 Dump 확인
 
 > Log 및 index 적재 내용을 확인하여 실제 Disk에 저장되는 데이터 확인 목적
+
+<br>
