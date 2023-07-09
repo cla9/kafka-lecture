@@ -18,6 +18,9 @@
 
 ## 1. 기초 Produce, Consume 실습하기
 
+> 기본 Produce, Consume 및 Kafka 관리 도구를 통해 해당 정보 확인 목표
+
+<br>
 
 1. 실습 디렉토리 이동
 ```
@@ -63,7 +66,7 @@ sh 02_consume.sh
 
 ---
 
-### 1-1 live-tailing 확인(AKHQ)
+### 1-1. live-tailing 확인(AKHQ)
 
 
 <br>
@@ -115,7 +118,7 @@ Live tail을 수행할 Topic인 kafka-class를 선택한다.
 
 <br>
 
-### 1-2 kafka-class offset 정보 확인(UI for Apache Kafka)
+### 1-2. kafka-class offset 정보 확인(UI for Apache Kafka)
 
 
 UI for apache kafka는 Kafka 관리도구 중 하나로써 Kafka Cluster 관리에 필요한 다양한 기능을 제공한다. 그 중 Topic 상세 정보를 한 번 살펴보자.
@@ -143,7 +146,7 @@ UI for apache kafka에서 제공하는 여러 기능을 테스트해본다.
 
 <br>
 
-### 1-3 1번 실습 종료
+### 1-3. 1번 실습 종료
 
 <br>
 
@@ -177,7 +180,7 @@ cd ..
 
 <br>
 
-강사가 임의로 kafka-consumer-test Topic에 5개의 메시지(0~4)를 미리 발행하고 이후 **특정 시점에 모든 메시지를 가져오는 것** 확인 목표
+> 강사가 임의로 kafka-consumer-test Topic에 5개의 메시지(0~4)를 미리 발행하고 이후 **특정 시점에 모든 메시지를 가져오는 것** 확인 목표
 
 <br>
 
@@ -205,7 +208,7 @@ sh 02_consume_beginning_offset.sh
 
 <br>
 
-강사가 임의로 5개의 메시지(0~4)를 미리 발행하고 이후 **특정 시점에 특정 offset으로부터 메시지를 가져오는 것** 확인 목표
+> 강사가 임의로 5개의 메시지(0~4)를 미리 발행하고 이후 **특정 시점에 특정 offset으로부터 메시지를 가져오는 것** 확인 목표
 
 <br>
 
@@ -229,12 +232,12 @@ sh 03_consume_specific_offset.sh 3
 
 <br>
 
-파티션이 2개인 **consumer-group-test** Topic을 공용 Kafka Cluster에 미리 생성되어있는 환경에서 consumer 그룹 관련 기본 개념을 실습하는 것을 목표
+> 파티션이 2개인 **consumer-group-test** Topic을 공용 Kafka Cluster에 미리 생성되어있는 환경에서 consumer 그룹 관련 기본 개념을 실습하는 것을 목표
 
 <br>
 
 
-### 4-1 Consumer Group 메시지 분배 확인
+### 4-1. Consumer Group 메시지 분배 확인
 
 
 1. 실습 디렉토리 이동
@@ -326,23 +329,254 @@ sh 02_test_consumer_group.sh
 
 <br>
 
+---
 
-### 4-2 Consumer 종료 시, 나머지 Consumer에서 메시지 처리 확인하기
+### 4-2. Consumer 종료 시, 나머지 Consumer에서 메시지 처리 확인하기
+
+<br>
+
+1. Consumer 종료
+
+<p align="center">
+    <img src="./pic/12_exit_one_consumer.png"/>
+</p>
+
+<br>
+
+실행된 두 개의 프로그램 중 하나의 프로그램을 Ctrl + C를 입력하여 종료한다.
+
+<br>
+
+2. Consumer Rebalance 확인
+
+Producer 프로그램에서 번갈아가며, 메시지를 발행하고 종료된 프로그램에서 처리하던 메시지가 하나의 Consumer 프로그램에서 모두 처리 되는 것을 확인한다.
+
+---
+
+### 4-3. Consumer Lag 확인하기
+
+<br>
+
+1. Consumer 프로그램 모두 종료
 
 
+<p align="center">
+    <img src="./pic/13_exit_all_consumer.png"/>
+</p>
+
+<br>
+
+기존에 수행중이던 Consumer 프로그램을 모두 종료한다.
+
+<br>
+
+2. Producer 메시지 발행
+
+Consumer 프로그램 모두 종료 후, Producer에서 메시지를 추가로 몇 개 더 발행한다.
+
+<br>
+
+3. Lag 확인
+
+<p align="center">
+    <img src="./pic/14_check_lag.png"/>
+</p>
+
+<br>
+
+UI for Apache Kafka 웹페이지에서 Consumers를 클릭하여 자신의 Nick-Name에 해당하는 Consumer Group 정보를 확인한다.
 
 
-lag 확인
-consumer group이 akhq에 표시된 거 확인하기
+<br>
 
-스크립트 보강해서, partition 0, 1로 발행하는 produce 넣고 consumer-group에서 각각 다른 메시지 수신하는 것도 보여주면 좋을듯
+
+### 4-4. 4번 실습 종료
+
+<br>
+
+4번 실습이 끝나면 codespace 화면 분할 종료 후, 다음 실습을 위해 상위 디렉토리로 이동한다.
+
+<br>
+
+1. 화면 분할 종료
+
+<p align="center">
+    <img src="./pic/02_terminate_window.png"/>
+</p>
+
+종료 버튼을 클릭하여 터미널을 1개만 유지하도록 지정한다.
+
+<br>
+
+
+2. 패널 위치 원래대로 설정하기
+
+<p align="center">
+    <img src="./pic/15_move_pannel.png"/>
+</p>
+
+터미널 상단바 부분에서 마우스 우클릭 > 패널 위치 > 아래 버튼을 클릭하여 터미널 위치를 원래 위치로 되돌린다.
+
+<br>
+
+3. 상위 디렉토리 이동
+
+```
+cd ..
+```
+
+<br>
+
+
+---
 
 
 ## 5. Multi-json data 테스트하기
 
-akhq live-taling 키기
-더미데이터 확인
-메시지 발행
+<br>
 
+> json 데이터 여러개를 테스트 목적으로 한번에 발행하고 싶을 경우 파일로 저장하여 Producer 프로그램을 통해 전달하는 것을 목표
+
+<br>
+
+1. 실습 디렉토리 이동
+
+```
+cd 05_produce_file_content
+```
+
+<br>
+
+2. dummy 데이터 확인
+
+```
+cat dummy.json
+```
+
+<br>
+
+3. akhq kafka-class Topic live tail 기능 활성화
+
+<p align="center">
+    <img src="./pic/06_tail_topic_log.png"/>
+</p>
+
+<br>
+
+4. Producer 프로그램 실행
+
+```
+sh 01_produce.sh
+```
+
+<br>
+
+5. live tail을 통해 json 데이터가 멀티로 전달된 것 확인
+
+<p align="center">
+    <img src="./pic/16_check_json_data.png"/>
+</p>
+
+실시간 json 데이터 발행 확인
+
+### 5-1. 5번 실습 종료
+
+<br>
+
+5번 실습이 끝나면 다음 실습을 위해 상위 디렉토리로 이동한다.
+
+<br>
+
+
+1. 상위 디렉토리 이동
+
+```
+cd ..
+```
+
+<br>
+
+
+
+---
 
 ## 6. Up & Down Game 
+
+<br>
+
+<p align="center">
+    <img src="./pic/18_architecture.png"/>
+</p>
+
+<br>
+
+> 1. 사용자 Application 연결 정보 없이, Topic에 대한 메시지 발행/구독만으로 원격지 Application과 상호작용 목표
+> 2. Producer 메시지 발행 시, 사용자 지정 헤더 지정 방법 학습
+
+
+<br>
+
+1. 실습 디렉토리 이동
+
+```
+cd 05_produce_file_content
+```
+
+<br>
+
+2. Producer 실행
+
+```
+sh 01_produce.sh
+```
+
+Producer 파일을 살펴보면, nick-name을 지정하여 Header 정보 설정함
+
+<br>
+
+※ Producer 프로그램을 Kafkacat으로 설정한 이유는 기본 Producer 프로그램에서 메시지 발행할 때마다 Header 지정하는 방법이 복잡하기 때문
+
+
+<br>
+
+3. 강사 개인 PC에서 Application 실행 시점까지 대기
+
+<br>
+
+4. 게임에 참여하기
+```
+join
+```
+
+Producer 실행 프로그램에서 join 문자열을 입력하여 게임에 참가한다.
+
+<br>
+
+5. Consumer 실행 위해 codespace 터미널 분리
+
+<p align="center">
+    <img src="./pic/01_split_window.png"/>
+</p>
+
+<br>
+
+6. 분리된 터미널에서 Consumer 프로그램 실행
+
+<p align="center">
+    <img src="./pic/17_attend_game.png"/>
+</p>
+
+<br>
+
+```
+sh 02_consume.sh
+```
+
+
+<br>
+
+7. 강사 개인 PC에서 게임을 시작할 때까지 대기한다.
+
+<br>
+
+8. 게임이 시작되면, 1 ~ 300 사이 숫자를 입력하며 Up & Down 게임을 진행한다. 게임은 총 3라운드 수행되며, 한 라운드가 끝나면 다음 라운드 시작까지 10초의 대기시간이 존재한다.
