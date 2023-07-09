@@ -234,7 +234,7 @@ sh 03_consume_specific_offset.sh 3
 <br>
 
 
-### 4-1 단일 Consumer 테스트
+### 4-1 Consumer Group 메시지 분배 확인
 
 
 1. 실습 디렉토리 이동
@@ -245,21 +245,90 @@ cd 04_test_consumer_group
 
 <br>
 
-2. Producer 프로그램 실행
 
-```
-sh 01_produce.sh 0
-```
+2. 패널 위치 변경
 
-여기서 전달되는 인자는 partition 번호를 의미하며, consumer-group-test 토픽은 2개 파티션이 생성되어있음. 따라서 위 프로그램은 0번 파티션에 대해 메시지를 발행하는 것을 의도함.
 
-<br>
-
-※ Producer를 실행하기 위해 kafkacat 프로그램을 사용했는데, 이는 특정 파티션을 지정하기 위한 용도로 사용했음. 기본 제공 프로그램에서는 특정 파티션에 대해 메시지를 발행하는 기능이 없음 
+<p align="center">
+    <img src="./pic/08_move_terminal_position.png"/>
+</p>
 
 <br>
 
-3. codespace 화면 분할
+먼저 터미널을 4개 띄워야되므로 터미널 위치를 변경하는 것이 좋다. 따라서 터미널 부근에 마우스 오른쪽 버튼을 클릭 > 패널 위치 > 왼쪽으로 설정한다.
+
+<br>
+
+3. 다중 Terminal 구성
+
+
+<p align="center">
+    <img src="./pic/09_split_4_windows.png"/>
+</p>
+
+
+터미널을 분할하여 4개로 구성한다.
+
+<br>
+
+
+4. Producer 프로그램 실행
+
+<p align="center">
+    <img src="./pic/10_execute_producers.png"/>
+</p>
+
+<br>
+
+1번 터미널
+```
+sh 01_produce.sh 0 
+```
+
+2번 터미널
+```
+sh 01_produce.sh 1
+```
+
+<br>
+
+여기서 전달되는 인자는 partition 번호를 의미하며, consumer-group-test 토픽은 2개 파티션이 생성되어있음. 따라서 위 2개의 프로그램은 특정 파티션에 대해 메시지 발행을 목적으로 함.
+
+<br>
+
+※ Producer를 실행하기 위해 kafkacat 프로그램을 사용했는데, 이는 특정 파티션을 지정하기 위한 용도로 사용했음. 기본 제공 프로그램에서는 특정 파티션에 대해 메시지를 발행하는 기능이 없음
+
+<br>
+
+5. Consumer 프로그램 실행
+
+<p align="center">
+    <img src="./pic/11_execute_consumers.png"/>
+</p>
+
+나머지 2개 터미널에서 consumer 프로그램을 수행한다.
+
+```
+sh 02_test_consumer_group.sh
+```
+
+<br>
+
+두개의 Consumer 프로그램에는 사용자의 Nick-Name이 그룹명으로 지정되어있다. 따라서 별도 실행한 두 개의 프로그램은 동일한 Consumer Group으로 묶여있다.
+
+<br>
+
+6. 메시지 발행
+
+<br>
+
+터미널에서 생성한 두 개의 Producer 프로그램에서 번갈아가며 메시지를 임의로 발행한다. 이후 Consumer 프로그램에서 메시지들이 파티션별로 분배되어 출력되는 것을 확인한다.
+
+<br>
+
+
+### 4-2 Consumer 종료 시, 나머지 Consumer에서 메시지 처리 확인하기
+
 
 
 
