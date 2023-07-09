@@ -247,12 +247,128 @@ Topic에 지정된 설정 변경함. 위 코드는 index.interval.bytes 값을 �
 <br>
 
 
+### 2-1. 2번 실습 종료
 
+<br>
 
+2번 실습이 끝나면, 다음 실습을 위해 상위 디렉토리로 이동한다.
+
+<br>
+
+1. 상위 디렉토리 이동
+
+```
+cd ..
+```
+
+<br>
 
 ## 3. Preferred Leader Election 수행하기
 
 > 임의로 Broker 중단 하여 Leader Skew 상황 만든 다음 수동으로 Preferred Leader Election 수행 목적
+
+<br>
+
+1. 실습 디렉토리 이동
+
+```
+cd 03_preferred_leader
+```
+
+<br>
+
+
+2. 임의의 Broker Shutdown 시켜 파티션 리더 재선출
+
+```
+./01_shutdown_broker.sh 1
+```
+
+<br>
+
+위 코드는 1번 Broker 및 Controller를 기동 중지하는 예제로써 프로그램 실행 시 인자로 node id를 전달하면 해당 인스턴스 종료됨
+
+<br>
+
+3. Topic 정보 확인
+
+```
+./describe_topic.sh
+```
+
+<br>
+
+Broker 종료 이후 Topic 정보를 확인하면, Partition Leader 종료로 인하여 Leader 재선출이 일어남을 확인할 수 있음
+
+<br>
+
+4. 중지 시킨 Broker 재기동
+
+```
+./02_run_broker.sh 1
+```
+
+<br>
+
+이전에 기동 중지했던 Broker를 다시 기동시킴
+
+<br>
+
+5. Topic 정보 확인
+
+```
+./describe_topic.sh
+```
+
+<br>
+
+Broker 재기동 이후 Topic 정보를 확인하면, 재기동한 Broker가 Message를 따라잡으면 ISR에 포함되지만, 해당 Broker로 다시 Leader가 바뀌지는 않음
+
+<br>
+
+6. Preferred Leader Election 수행
+
+```
+./03_elect_preferred_leader.sh
+```
+
+<br>
+
+Topic 최초 생성 시, 지정된 replicas에 가장 첫번째가 Preferred Leader임. 따라서 해당 Topic Partition에 대하여 Preferred Leader로 재선출하도록 요청할 수 있음. 요청 전달 시 json 포맷으로 Topic과 Partition 정보를 전달해야함
+
+```
+cat preferred_leader.json
+```
+
+<br>
+
+7. Topic 정보 확인
+
+```
+./describe_topic.sh
+```
+
+<br>
+
+Preferred Leader Election 수행 결과, Leader Skew 현상에서 벗어나서 균형잡힌 Partiton Leader 분배였던 초기 모습으로 돌아감 확인
+
+<br>
+
+
+
+### 3-1. 3번 실습 종료
+
+<br>
+
+3번 실습이 끝나면, 다음 실습을 위해 상위 디렉토리로 이동한다.
+
+<br>
+
+1. 상위 디렉토리 이동
+
+```
+cd ..
+```
 
 <br>
 
@@ -262,8 +378,53 @@ Topic에 지정된 설정 변경함. 위 코드는 index.interval.bytes 값을 �
 
 <br>
 
+1. 실습 디렉토리 이동
+
+```
+cd 04_reassign_partition
+```
+
+<br>
+
+
+
+### 4-1. 4번 실습 종료
+
+<br>
+
+4번 실습이 끝나면, 다음 실습을 위해 상위 디렉토리로 이동한다.
+
+<br>
+
+1. 상위 디렉토리 이동
+
+```
+cd ..
+```
+
+<br>
+
+
+
 ## 5. Produce 내용 적재된 Log 파일 Dump 확인
 
 > Log 및 index 적재 내용을 확인하여 실제 Disk에 저장되는 데이터 확인 목적
 
 <br>
+
+1. 실습 디렉토리 이동
+
+```
+cd 05_check_dump
+```
+
+<br>
+
+
+
+
+## 6. Kafka Cluster 종료 및 환경변수 제거
+
+```
+cd 
+```

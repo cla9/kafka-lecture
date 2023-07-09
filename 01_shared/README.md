@@ -536,7 +536,7 @@ cd ..
 1. 실습 디렉토리 이동
 
 ```
-cd 05_produce_file_content
+cd 06_play_up_and_down_game
 ```
 
 <br>
