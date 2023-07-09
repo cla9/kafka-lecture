@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 echo "nick-name : $NICK_NAME"
 echo "server-ip : $SERVER_IP"

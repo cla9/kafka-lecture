@@ -9,4 +9,4 @@ if [[ ! $NODE =~ ^[1-3]$ ]]; then
   exit 1
 fi
 
-tail -f $KAFKAH_HOME/logs/server_$NODE/server.log
+tail -f $KAFKA_HOME/logs/server_$NODE/server.log

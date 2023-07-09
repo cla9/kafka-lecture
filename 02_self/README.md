@@ -20,7 +20,7 @@ cd 01_setup_kafka_cluster
 2. Kafka Cluster Config 설정
 
 ```
-bash 01_modify_broker_setting.sh
+./01_modify_broker_setting.sh
 ```
 
 <br>
@@ -49,7 +49,7 @@ bash 01_modify_broker_setting.sh
 3. Log 디렉토리에 Cluster 기본 설정 파일 생성
 
 ```
-bash 02_set_cluster_id.sh
+./02_set_cluster_id.sh
 ```
 
 <br>
@@ -61,7 +61,7 @@ bash 02_set_cluster_id.sh
 4. Cluster 구동
 
 ```
-bash 03_run_kafka_cluster.sh
+./03_run_kafka_cluster.sh
 ```
 
 <br>
@@ -73,4 +73,93 @@ Broker Cluster 구동 및 Log 디렉토리 지정
 
 <br>
 
-5. 
+5. controller 로그 확인
+
+```
+./04_check_controller_log.sh
+```
+
+<br>
+
+Enter Node id: 1
+
+<br>
+
+※ Controller 로그 확인할 Node id를 입력(1~3)한다. 위 예시는 1번 Node의 Controller 로그를 확인하는 예제이다.
+Controller 로그를 통해 리더 선출 완료 및 Broker가 Controller를 통해 접속 했음을 확인한다.
+
+<br>
+
+6. Broker 로그 확인
+
+```
+./05_check_broker_log.sh
+```
+
+<br>
+
+Enter Node id: 1
+
+<br>
+
+※ Broker 로그 확인할 Node id를 입력(1~3)한다. 위 예시는 1번 Node의 Broker 로그를 확인하는 예제이다.
+Broker 로그를 통해 Kafka Cluster가 완전히 기동 완료 되었음을 확인한다.
+
+<br>
+
+7. Controller 상태 확인
+
+```
+./06_check_controller.status.sh
+```
+
+<br>
+
+어떤 Node가 현재 Leader이며, Leader Epoch는 무엇인지 현재 Lag가 발생한 Follower Controller 정보 확인 가능
+
+<br>
+
+8. Controller Replication 상세 정보 확인
+
+```
+./07_check_controller_replication.sh
+```
+
+<br>
+
+Controller Pool에 해당하는 Controller들 간의 상태와 Timestamp, Lag 정보 확인 가능
+
+<br>
+
+
+### 1-1. 1번 실습 종료
+
+<br>
+
+1번 실습이 끝나면, 다음 실습을 위해 상위 디렉토리로 이동한다.
+
+<br>
+
+1. 상위 디렉토리 이동
+
+```
+cd ..
+```
+
+<br>
+
+## 2. Topic 생성 및 파티션 정보 확인
+
+> Partition 개수가 지정된 Topic 생성 및 생성 정보 확인 목적
+
+## 3. Preferred Leader Election 수행하기
+
+> 임의로 Broker 중단 하여 Leader Skew 상황 만든 다음 수동으로 Preferred Leader Election 수행 목적
+
+## 4. Partition Reassign 수동 실습하기
+
+> 수동으로 Partition Reassign을 통해서 Broker Skew 상황 만들기 목적
+
+## 5. Produce 내용 적재된 Log 파일 Dump 확인
+
+> Log 및 index 적재 내용을 확인하여 실제 Disk에 저장되는 데이터 확인 목적
