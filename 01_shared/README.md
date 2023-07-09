@@ -1,6 +1,6 @@
 # 공용 Kafka Produce & Consume 실습
 
-기본적인 Produce, Consume 과정 이해 및 Kafka 관리도구인 akhq와 UI for Apache Kafka를 체험해보는 것을 목표로 함.
+> 기본적인 Produce, Consume 과정 이해 및 Kafka 관리도구인 akhq와 UI for Apache Kafka를 체험해보는 것을 목표로 함.
 
 <br>
 
@@ -215,8 +215,12 @@ sh 02_consume_beginning_offset.sh
 1. consumer 프로그램 실행
 
 ```
-sh 03_consume_specific_offset.sh 3 
+sh 03_consume_specific_offset.sh 
 ```
+
+<br>
+
+Enter offset: 3
 
 <br>
 
@@ -285,13 +289,26 @@ cd 04_test_consumer_group
 
 1번 터미널
 ```
-sh 01_produce.sh 0 
+sh 01_produce.sh
+
 ```
+<br>
+
+Enter partition number: 0 
+
+<br>
+
 
 2번 터미널
 ```
-sh 01_produce.sh 1
+sh 01_produce.sh
 ```
+
+<br>
+
+Enter partition number: 1
+
+<br>
 
 <br>
 

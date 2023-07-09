@@ -1,7 +1,0 @@
-{
- "partitions" :[
-   {"topic" : "test-topic", "partition" :0},
-   {"topic" : "test-topic", "partition" :1},
-   {"topic" : "test-topic", "partition" :2} 
- ]
-}
