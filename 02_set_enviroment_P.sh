@@ -12,7 +12,7 @@ if [[ ! $IP_ADDRESS =~ ^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[
 else
    if ! grep -q "NICK_NAME" ~/.bashrc ; then
       # Export the value to `.bashrc`
-      echo "export NICK_NAME=$NAME" >> ~/.bashrc
+      echo "export NICK_NAME=$NAME-$RANDOM" >> ~/.bashrc
       echo "export SERVER_IP=$IP_ADDRESS" >> ~/.bashrc      
       echo "export KAFKA_HOME=$HOME/kafka_2.13-3.5.0" >> ~/.bashrc
    else 
