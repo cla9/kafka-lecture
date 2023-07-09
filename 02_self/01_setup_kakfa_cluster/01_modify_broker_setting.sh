@@ -1,4 +1,4 @@
-#!/bin/sh
+ #! /bin/bash
 cp $KAFKA_HOME/config/kraft/server.properties $KAFKA_HOME/config/kraft/server_1.properties
 cp $KAFKA_HOME/config/kraft/server.properties $KAFKA_HOME/config/kraft/server_2.properties
 cp $KAFKA_HOME/config/kraft/server.properties $KAFKA_HOME/config/kraft/server_3.properties

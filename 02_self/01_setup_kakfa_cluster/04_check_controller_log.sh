@@ -1,9 +1,12 @@
-#!/bin/sh
+#! /bin/bash
 bash ../util/check_variable.sh
 
-if [ $# -ne 1 ]; then
-  echo "Please insert postive offset number"
+# Get offset from user
+read -p "Enter Node id: " NODE
+
+if [[ ! $NODE =~ ^[1-3]$ ]]; then  
+  echo "Please insert postive node id(1~3)"
   exit 1
 fi
 
-tail -f $KAFKAH_HOME/logs/server_$1/controller.log
+tail -f $KAFKA_HOME/logs/server_$NODE/controller.log

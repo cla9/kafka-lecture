@@ -31,7 +31,7 @@ cd 01_basic_pub_sub
 
 2. producer 프로그램 실행
 ```
-sh 01_produce.sh
+bash 01_produce.sh
 ```
 
 해당 프로그램은 공용 Kafka 서버 내에 있는 kafka-class 토픽을 대상으로 데이터 발행을 수행한다.
@@ -57,7 +57,7 @@ Consumer 프로그램 실행을 위해서 window 화면을 분할한다.
 
 
 ```
-sh 02_consume.sh
+bash 02_consume.sh
 ```
 
 <br>
@@ -192,7 +192,7 @@ cd ..
 2. consumer 프로그램 실행
 
 ```
-sh 02_consume_beginning_offset.sh
+bash 02_consume_beginning_offset.sh
 ```
 
 <br>
@@ -215,7 +215,7 @@ sh 02_consume_beginning_offset.sh
 1. consumer 프로그램 실행
 
 ```
-sh 03_consume_specific_offset.sh 
+bash 03_consume_specific_offset.sh 
 ```
 
 <br>
@@ -289,7 +289,7 @@ cd 04_test_consumer_group
 
 1번 터미널
 ```
-sh 01_produce.sh
+bash 01_produce.sh
 
 ```
 <br>
@@ -301,7 +301,7 @@ Enter partition number: 0
 
 2번 터미널
 ```
-sh 01_produce.sh
+bash 01_produce.sh
 ```
 
 <br>
@@ -329,7 +329,7 @@ Enter partition number: 1
 나머지 2개 터미널에서 consumer 프로그램을 수행한다.
 
 ```
-sh 02_test_consumer_group.sh
+bash 02_test_consumer_group.sh
 ```
 
 <br>
@@ -483,7 +483,7 @@ cat dummy.json
 4. Producer 프로그램 실행
 
 ```
-sh 01_produce.sh
+bash 01_produce.sh
 ```
 
 <br>
@@ -544,7 +544,7 @@ cd 05_produce_file_content
 2. Producer 실행
 
 ```
-sh 01_produce.sh
+bash 01_produce.sh
 ```
 
 Producer 파일을 살펴보면, nick-name을 지정하여 Header 정보 설정함
@@ -586,7 +586,7 @@ Producer 실행 프로그램에서 join 문자열을 입력하여 게임에 참�
 <br>
 
 ```
-sh 02_consume.sh
+bash 02_consume.sh
 ```
 
 

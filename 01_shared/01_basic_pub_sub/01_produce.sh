@@ -1,4 +1,4 @@
- #! /bin/bash
+#!/bin/sh
 
 bash ../util/check_variable.sh
 

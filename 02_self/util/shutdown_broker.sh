@@ -1,4 +1,4 @@
-#!/bin/sh
+#! /bin/bash
 
 if [ $# -ne 1 ]; then
   echo "Please insert postive node Id"

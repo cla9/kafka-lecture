@@ -20,7 +20,7 @@ cd 01_setup_kafka_cluster
 2. Kafka Cluster Config 설정
 
 ```
-sh 01_modify_broker_setting.sh
+bash 01_modify_broker_setting.sh
 ```
 
 <br>
@@ -49,7 +49,7 @@ sh 01_modify_broker_setting.sh
 3. Log 디렉토리에 Cluster 기본 설정 파일 생성
 
 ```
-sh 02_set_cluster_id.sh
+bash 02_set_cluster_id.sh
 ```
 
 <br>
@@ -61,7 +61,7 @@ sh 02_set_cluster_id.sh
 4. Cluster 구동
 
 ```
-sh 03_run_kafka_cluster.sh
+bash 03_run_kafka_cluster.sh
 ```
 
 <br>
