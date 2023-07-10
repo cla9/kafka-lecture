@@ -1,4 +1,4 @@
-#!/bin/sh
+#! /bin/sh
 
 
 #shutdown all brokers
