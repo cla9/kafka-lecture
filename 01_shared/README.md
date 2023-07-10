@@ -14,6 +14,21 @@
 
 <br>
 
+
+## 실습 환경
+
+<p align="center">
+    <img src="./pic/environment.png"/>
+</p>
+
+<br>
+
+- github codespace(월 60시간 무료)에서 제공하는 VM 환경에서 Kafka 도구 설치
+- Public Cloud에 설치된 Kafka Broker
+- Kafka 도구를 통해서 Produce/Consume 수행
+
+<br>
+
 ---
 
 ## 1. 기초 Produce, Consume 실습하기
@@ -163,7 +178,15 @@ UI for apache kafka에서 제공하는 여러 기능을 테스트해본다.
 
 <br>
 
-2. 상위 디렉토리 이동
+2. Producer 프로그램 종료
+
+<p align="center">
+    <img src="./pic/19_exit_shared_01_producer.png"/>
+</p>
+
+<br>
+
+3. 상위 디렉토리 이동
 
 ```
 cd ..
@@ -201,6 +224,9 @@ cd ..
 
 <br>
 
+프로그램 종료는 CTRL + C를 눌러 종료한다.
+<br>
+
 ---
 
 ## 3. 특정 offset 으로부터 데이터 가져오기
@@ -228,6 +254,9 @@ Enter offset: 3
 
 ※ 위 예제는 3번 offset부터 메시지를 수신받는 테스트 프로그램 실행
 
+<br>
+
+프로그램 종료는 CTRL + C를 눌러 종료한다.
 <br>
 
 ---
@@ -483,7 +512,7 @@ cat dummy.json
 4. Producer 프로그램 실행
 
 ```
-./01_produce.sh
+./01_produce_file.sh
 ```
 
 <br>
@@ -532,6 +561,10 @@ cd ..
 
 <br>
 
+해당 실습을 위해 먼저 파티션 3개로 지정된 game 토픽 생성
+
+<br>
+
 Up & Down Game project는 https://github.com/cla9/kafka-lecture-game 참고
 
 <br>
@@ -544,7 +577,11 @@ cd 06_play_up_and_down_game
 
 <br>
 
-2. Producer 실행
+2. 강사 개인 PC에서 Application 실행 시점까지 대기
+
+<br>
+
+3. Producer 실행
 
 ```
 ./01_produce.sh
@@ -556,10 +593,6 @@ Producer 파일을 살펴보면, nick-name을 지정하여 Header 정보 설정�
 
 ※ Producer 프로그램을 Kafkacat으로 설정한 이유는 기본 Producer 프로그램에서 메시지 발행할 때마다 Header 지정하는 방법이 복잡하기 때문
 
-
-<br>
-
-3. 강사 개인 PC에서 Application 실행 시점까지 대기
 
 <br>
 
@@ -600,3 +633,27 @@ Producer 실행 프로그램에서 join 문자열을 입력하여 게임에 참�
 <br>
 
 8. 게임이 시작되면, 1 ~ 300 사이 숫자를 입력하며 Up & Down 게임을 진행한다. 게임은 총 3라운드 수행되며, 한 라운드가 끝나면 다음 라운드 시작까지 10초의 대기시간이 존재한다.
+
+<br>
+
+### 6-1. 6번 실습 종료
+
+<br>
+
+1. 화면 분할 종료
+
+<p align="center">
+    <img src="./pic/02_terminate_window.png"/>
+</p>
+
+종료 버튼을 클릭하여 터미널을 1개만 유지하도록 지정한다.
+
+<br>
+
+2. 상위 디렉토리 이동
+
+```
+cd ..
+```
+
+<br>

@@ -141,7 +141,7 @@ Broker 로그를 통해 Kafka Cluster가 완전히 기동 완료 되었음을 �
 7. Controller 상태 확인
 
 ```
-./06_check_controller.status.sh
+./06_check_controller_status.sh
 ```
 
 <br>
