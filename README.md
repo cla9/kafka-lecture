@@ -15,7 +15,7 @@
 ## Kafka 프로그램 및 Kafkacat 설치
 
 ```
-bash 01_install_kafka.sh
+./01_install_kafka.sh
 ```
 
 <br>
@@ -37,7 +37,7 @@ Enter an IP address : ※[실습 당시 IP 주소 제공]
 <br>
 
 ```
-bash check_enviroment.sh
+./check_enviroment.sh
 
 위 명령어 수행 결과 nick-name, server-ip, kafka-home 모두 출력되면 정상
 ```
