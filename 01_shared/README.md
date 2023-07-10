@@ -87,7 +87,7 @@ Consumer 프로그램 실행을 위해서 window 화면을 분할한다.
 <br>
 
 공용 Kafka 서버에는 AKHQ와 UI for Apache Kafka가 설치되어있다.
-IP는 수업 시간에 공지하였으며, AKHQ는 **8081** 포트 UI for Apache Kafka는 **8080** 포트로 접속한다.
+IP는 수업 시간에 공지하며, AKHQ는 **8081** 포트 UI for Apache Kafka는 **8080** 포트로 접속한다.
 
 <br>
 
