@@ -2,6 +2,37 @@
 
 > KRaft Cluster 내부 Controller 속성 확인 및 토픽 파티션 관리 방법 습득 목적
 
+<br>
+
+## 목차
+1. [Kafka Cluster 생성](#1-kafka-cluster-생성)
+2. [Topic 생성 및 설정 변경](#2-topic-생성-및-파티션-정보-확인)
+3. [Preferred Leader Election 수행](#3-preferred-leader-election-수행하기)
+4. [수동 Partition Reassignment 수행](#4-partition-reassign-수동-실습하기)
+5. [Log 파일 내용 확인](#5-produce-내용-적재된-log-파일-dump-확인)
+6. [실습 환경 정리](#6-kafka-cluster-중지-및-codespace-환경-정리)
+
+<br>
+
+## 실습 환경
+
+<p align="center">
+    <img src="./pic/environment.png"/>
+</p>
+
+<br>
+
+- Codespace VM 한대에서 3대 Kafka Broker 설치하여 Cluster 구성
+- 3대의 Broker는 Controller와 Broker 역할을 모두 수행함
+- VM 한대에 설치되므로 각각 Broker의 Port 및 Log 저장위치 모두 다르게 구성
+
+<br>
+
+
+<br>
+
+---
+
 ## 1. Kafka Cluster 생성
 
 > KRaft Cluster 생성 및 Controller 정보 확인 목적
@@ -148,6 +179,8 @@ cd ..
 
 <br>
 
+---
+
 ## 2. Topic 생성 및 파티션 정보 확인
 
 > Partition 개수가 지정된 Topic 생성 및 생성 정보 확인 목적
@@ -263,6 +296,8 @@ cd ..
 
 <br>
 
+---
+
 ## 3. Preferred Leader Election 수행하기
 
 > 임의로 Broker 중단 하여 Leader Skew 상황 만든 다음 수동으로 Preferred Leader Election 수행 목적
@@ -372,6 +407,8 @@ cd ..
 
 <br>
 
+---
+
 ## 4. Partition Reassign 수동 실습하기
 
 > 수동으로 Partition Reassign을 통해서 Broker Skew 상황 만들기 목적
@@ -387,16 +424,101 @@ cd 04_reassign_partition
 <br>
 
 
+2. json 파일 살펴보기
+
+```
+cat reassign_partition_manual.json
+```
+
+<br>
+
+토픽의 각 파티션별로 Replica를 임의로 지정한 것을 확인할 수 있다. 이때 모든 파티션에 대해서 Replica를 1,2,3으로 고정하므로 이때 Preferred Leader는 전부 1번이다. 따라서 해당 json을 기반으로 Partition Reassignment를 수행하면 Leader 및 Broker 불균형이 발생한다.
+
+<br>
+
+3. Topic 상태 살펴보기
+
+```
+./describe_topic.sh
+```
+
+Topic 정보를 보면, Partition Reassignment를 수행하기 이전에는 균형있게 Replica가 배치된 것과 Partition Leader가 3개의 Broker에 적절하게 배치되어있음을 볼 수 있다.
+
+3. Partition Reassign 수행하기
+
+<br>
+
+```
+./01_reassign_partition.sh
+```
+
+<br>
+
+Partition Reassignmnet를 수행할 때, 기존 Replica 구성이 어떻게 되어있는지 화면에 출력해준다. 따라서 이를 복사해서 저장했다가 나중에 원복할 수 있다.
+
+<br>
+
+4. Topic 상태 살펴보기
+
+```
+./describe_topic.sh
+```
+
+<br>
+
+Topic 상태를 살펴보면, Replica들이 변경된 것을 알 수 있다. 하지만 Partition Reassignment를 수행했다고 해서 Partition Leader가 변경되지는 않는다. 따라서 이를 위해서는 Preferred Leader Election을 수행해야한다.
+
+<br>
+
+---
+
+5. Preferred Leader Election 수행하기
+
+```
+./02_elect_preferred_leader.sh
+```
+
+<br>
+
+지정된 Replica를 기준으로 Preferred Leader를 선정한다.
+
+<br>
+
+6. Topic 상태 살펴보기
+
+```
+./desribe_topic.sh
+```
+
+<br>
+
+Topic 상태를 보면 모두 1번 Broker로 Leader가 지정됨을 볼 수 있다.
+
+<br>
+
+
+
 
 ### 4-1. 4번 실습 종료
 
 <br>
 
-4번 실습이 끝나면, 다음 실습을 위해 상위 디렉토리로 이동한다.
+4번 실습이 끝나면, Topic을 삭제하고 다음 실습을 위해 상위 디렉토리로 이동한다.
 
 <br>
 
-1. 상위 디렉토리 이동
+
+1. Topic 삭제
+
+```
+./03_delete_topic.sh
+```
+
+해당 실습 종료를 위해 토픽을 삭제한다.
+
+<br>
+
+2. 상위 디렉토리 이동
 
 ```
 cd ..
@@ -404,6 +526,7 @@ cd ..
 
 <br>
 
+---
 
 
 ## 5. Produce 내용 적재된 Log 파일 Dump 확인
@@ -421,10 +544,109 @@ cd 05_check_dump
 <br>
 
 
-
-
-## 6. Kafka Cluster 종료 및 환경변수 제거
+2. Topic 생성하기
 
 ```
-cd 
+./01_create_new_topic.sh
 ```
+
+<br>
+
+실습을 위해 신규 Topic test-topic-log을 생성한다. 이때 index dump 파일 확인을 위해 index.interval.bytes 값을 500으로 지정하였다. 또한 Partition 및 Replication Factor를 3으로 지정하여 모든 Broker에 Log가 적재되도록 구성했다.
+
+<br>
+
+
+3. Topic 정보 확인
+
+```
+./02_describe_topic.sh
+```
+
+<br>
+
+생성된 Topic 정보를 확인한다.
+
+<br>
+
+4. 대량 데이터 발행
+
+```
+./03_produce_topic.sh
+```
+
+<br>
+
+dummy.json 파일에 있는 2000여개 json 데이터를 발행하여 Broker Log에 적재한다.
+
+<br>
+
+5. Log 파일 확인
+
+```
+./04_check_files.sh
+```
+
+<br>
+
+Broker 1번 로그 파일 디렉토리를 확인하여 해당 Topic Log 파일이 정상적으로 생성되었는지 확인한다.
+
+<br>
+
+6. Index 파일 dump 확인하기
+
+```
+./05_dump_index.sh
+```
+
+<br>
+
+파일 시스템에 저장된 Index 파일 내용을 확인하여 실제 Log 파일에 대응되는 offset과 position을 확인한다.
+
+<br>
+
+7. Log 파일 dump 확인하기
+
+```
+./06_dump_log.sh
+```
+
+파일 시스템에 저장된 Log 파일 내용을 확인하여, 데이터가 정상적으로 disk에 저장됨을 확인한다.
+
+<br>
+
+---
+
+## 6. Kafka Cluster 중지 및 codespace 환경 정리
+
+1. 디렉토리 이동
+
+```
+cd /workspaces/kafka-lecture
+```
+
+<br>
+
+
+2. 자원 정리
+
+```
+source 03_cleanup_P.sh
+```
+
+<br>
+
+Broker 1~3 노드를 모두 내리고 ~/.bashrc 내부 환경 변수를 제거한다.
+
+<br>
+
+3. codespace 삭제
+
+<p align="center">
+    <img src="./pic/01_delete_codespaces.png"/>
+</p>
+
+<br>
+
+github에서 현재 기동중인 codespaces를 삭제한다.
+

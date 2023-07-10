@@ -530,6 +530,9 @@ cd ..
 > 1. 사용자 Application 연결 정보 없이, Topic에 대한 메시지 발행/구독만으로 원격지 Application과 상호작용 목표
 > 2. Producer 메시지 발행 시, 사용자 지정 헤더 지정 방법 학습
 
+<br>
+
+Up & Down Game project는 https://github.com/cla9/kafka-lecture-game 참고
 
 <br>
 
