@@ -17,12 +17,15 @@ rm -rf $KAFKA_HOME/logs/server_3
 #remove all variables from `.bashrc`
 if grep -q "NICK_NAME" ~/.bashrc ; then
     sed -i "/$(grep -P "NICK_NAME" ~/.bashrc)/d" ~/.bashrc
+    unset NICK_NAME
 fi          
 if grep -q "SERVER_IP" ~/.bashrc ; then
     sed -i "/$(grep -P "SERVER_IP" ~/.bashrc)/d" ~/.bashrc
+    unset SERVER_IP
 fi
 if grep -q "KAFKA_HOME" ~/.bashrc ; then    
     sed -i "s%export KAFKA_HOME=\$HOME/kafka_2.13-3.5.0%%g" ~/.bashrc
+    unset KAFKA_HOME
 fi
 
 #apply the changes
