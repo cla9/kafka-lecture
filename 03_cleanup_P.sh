@@ -24,7 +24,7 @@ if grep -q "SERVER_IP" ~/.bashrc ; then
     unset SERVER_IP
 fi
 if grep -q "KAFKA_HOME" ~/.bashrc ; then    
-    sed -i "/$(grep -P KAFKA_HOME" ~/.bashrc)/d" ~/.bashrc
+    sed -i "/$(grep -P "KAFKA_HOME" ~/.bashrc)/d" ~/.bashrc
     unset KAFKA_HOME
 fi
 
