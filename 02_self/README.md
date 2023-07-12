@@ -104,7 +104,20 @@ Broker Cluster 구동 및 Log 디렉토리 지정
 
 <br>
 
-5. controller 로그 확인
+
+5. Java Process Status 확인
+
+```
+jps | grep -v Jps
+```
+
+<br>
+
+JVM에서 기동중인 Process 상태를 확인하는 명령어로 Kafka 또한 JVM 위에서 기동되므로 해당 명령어를 통해 현재 프로세스 기동 여부를 확인할 수 있다.
+
+<br>
+
+6. controller 로그 확인
 
 ```
 ./04_check_controller_log.sh
@@ -121,7 +134,7 @@ Controller 로그를 통해 리더 선출 완료 및 Broker가 Controller를 통
 
 <br>
 
-6. Broker 로그 확인
+7. Broker 로그 확인
 
 ```
 ./05_check_broker_log.sh
@@ -138,7 +151,7 @@ Broker 로그를 통해 Kafka Cluster가 완전히 기동 완료 되었음을 �
 
 <br>
 
-7. Controller 상태 확인
+8. Controller 상태 확인
 
 ```
 ./06_check_controller_status.sh
@@ -150,7 +163,7 @@ Broker 로그를 통해 Kafka Cluster가 완전히 기동 완료 되었음을 �
 
 <br>
 
-8. Controller Replication 상세 정보 확인
+9. Controller Replication 상세 정보 확인
 
 ```
 ./07_check_controller_replication.sh
