@@ -1,4 +1,4 @@
-# Kafa 기본 환경 구성
+# Kafka 기본 환경 구성
 
 ##
 
@@ -26,7 +26,7 @@
 source 02_set_environment_P.sh
 
 Enter your nick name : ※[실습시 개인별로 사용할 unique한 nick-name 입력]
-Enter an IP address : ※[실습 당시 IP 주소 제공]
+Enter an IP address : ※[실습시 IP 주소 제공]
 
 ```
 <br>
