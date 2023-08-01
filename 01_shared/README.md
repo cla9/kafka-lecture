@@ -39,7 +39,7 @@
 
 1. 실습 디렉토리 이동
 ```
-cd 01_basic_pub_sub
+cd 01_shared/01_basic_pub_sub
 ```
 
 

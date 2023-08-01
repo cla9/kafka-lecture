@@ -43,7 +43,7 @@
 1. 실습 디렉토리 이동
 
 ```
-cd 01_setup_kafka_cluster
+cd 02_self/01_setup_kafka_cluster
 ```
 
 <br>
