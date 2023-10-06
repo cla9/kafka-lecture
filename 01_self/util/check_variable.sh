@@ -1,7 +1,6 @@
 #! /bin/bash
 
-if [ -z "$NICK_NAME" ] || [ -z "$SERVER_IP" ]; then
-  echo "Please set NICK_NAME or SERVER_IP"
+if [ -z "$KAFKA_HOME" ] ; then
+  echo "Please set KAFKA_HOME environment"
   exit 1
 fi
-
