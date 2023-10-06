@@ -416,13 +416,7 @@ Broker 재기동 이후 Topic 정보를 확인하면, 재기동한 Broker가 Mes
 
 <br>
 
-6. Preferred Leader Election 수행
-
-```
-./03_elect_preferred_leader.sh
-```
-
-<br>
+6. Preferred Leader json 파일 확인
 
 Topic 최초 생성 시, 지정된 replicas에 가장 첫번째가 Preferred Leader임. 따라서 해당 Topic Partition에 대하여 Preferred Leader로 재선출하도록 요청할 수 있음. 요청 전달 시 json 포맷으로 Topic과 Partition 정보를 전달해야함
 
@@ -432,7 +426,16 @@ cat preferred_leader.json
 
 <br>
 
-7. Topic 정보 확인
+7. Preferred Leader Election 수행
+
+```
+./03_elect_preferred_leader.sh
+```
+
+<br>
+
+
+8. Topic 정보 확인
 
 ```
 ./describe_topic.sh
@@ -542,7 +545,7 @@ Topic 상태를 살펴보면, Replica들이 변경된 것을 알 수 있다. 하
 6. Topic 상태 살펴보기
 
 ```
-./desribe_topic.sh
+./describe_topic.sh
 ```
 
 <br>
