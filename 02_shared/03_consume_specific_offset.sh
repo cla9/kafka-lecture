@@ -1,6 +1,6 @@
 #! /bin/bash
 
-sh ./util/check_variable.sh
+bash ./util/check_variable.sh
 
 # Get offset from user
 read -p "Enter offset: " OFFSET

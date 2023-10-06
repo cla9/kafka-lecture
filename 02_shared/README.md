@@ -31,6 +31,49 @@
 
 ---
 
+## 0. 실습 사전 준비
+
+1. 실습 디렉토리 이동
+
+```
+cd 02_shared/00_pre_setting
+```
+
+<br>
+
+2. Kafka 환경 설정
+
+```
+source 01_set_environment_P.sh
+
+Enter your nick name : ※[실습시 개인별로 사용할 unique한 nick-name 입력]
+Enter an IP address : ※[실습시 IP 주소 제공]
+
+```
+<br>
+
+환경설정 Shell 파일 수행시에는 **source** 명령어를 통해 수행해야한다.
+그 이유는 sh 혹은 ./ 로 Shell 파일을 실행 시킬 경우 자식 Shell로 동작하지만, 환경 설정의 경우 부모 Shell의 설정을 변경시켜야 되기 때문이다.
+
+<br>
+
+```
+./02_check_environment.sh
+
+위 명령어 수행 결과 nick-name, server-ip, kafka-home 모두 출력되면 정상
+```
+
+
+3. 상위 디렉토리 이동
+
+```
+cd ..
+```
+
+<br>
+
+---
+
 ## 1. 기초 Produce, Consume 실습하기
 
 > 기본 Produce, Consume 및 Kafka 관리 도구를 통해 해당 정보 확인 목표
@@ -39,7 +82,7 @@
 
 1. 실습 디렉토리 이동
 ```
-cd 01_shared/01_basic_pub_sub
+cd 01_basic_pub_sub
 ```
 
 
