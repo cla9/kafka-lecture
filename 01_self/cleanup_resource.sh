@@ -2,9 +2,9 @@
 
 
 #shutdown all brokers
-bash ../util/shutdown_broker.sh 1
-bash ../util/shutdown_broker.sh 2
-bash ../util/shutdown_broker.sh 3
+bash ./shutdown_broker.sh 1
+bash ./shutdown_broker.sh 2
+bash ./shutdown_broker.sh 3
 
 #delete all logs
 rm -rf /tmp/kraft-combined-logs-*
