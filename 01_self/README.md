@@ -57,10 +57,6 @@ cd 01_self/00_pre_setting
 
 ```
 source 02_set_environment_P.sh
-
-Enter your nick name : ※[실습시 개인별로 사용할 unique한 nick-name 입력]
-Enter an IP address : ※[실습시 IP 주소 제공]
-
 ```
 <br>
 
