@@ -9,7 +9,7 @@
 ## 1. codespace 삭제
 
 <p align="center">
-    <img src="./pic/01_delete_codespaces.png"/>
+    <img src="./delete_codespaces.png"/>
 </p>
 
 <br>
