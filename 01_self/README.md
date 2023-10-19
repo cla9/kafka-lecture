@@ -45,7 +45,7 @@ cd 01_self/00_pre_setting
 
 <br>
 
-2. Kafka 프로그램 및 Kafkacat 설치
+2. Kafka 프로그램 설치
 
 ```
 ./01_install_kafka.sh
