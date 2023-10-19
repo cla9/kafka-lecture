@@ -63,6 +63,16 @@ Enter an IP address : ※[실습시 IP 주소 제공]
 위 명령어 수행 결과 nick-name, server-ip, kafka-home 모두 출력되면 정상
 ```
 
+<br>
+
+```
+./03_install_kafkacat.sh
+
+```
+
+Kafka 사용 편의를 위해 개발된 오픈소스 Tool 설치
+
+<br>
 
 3. 상위 디렉토리 이동
 
