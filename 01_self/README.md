@@ -193,6 +193,14 @@ Broker 로그를 통해 Kafka Cluster가 완전히 기동 완료 되었음을 �
 
 <br>
 
+※ 일시적으로 다음과 같이 Node not available 로그가 발생할 수 있으나 현재 Controller 상태가 정상이고(8~9번 참고) 로그가 재발하지 않을 경우 무시한다.
+
+<p align="center">
+    <img src="./pic/node_not_available_log.png"/>
+</p>
+
+<br>
+
 8. Controller 상태 확인
 
 ```
@@ -214,6 +222,12 @@ Broker 로그를 통해 Kafka Cluster가 완전히 기동 완료 되었음을 �
 <br>
 
 Controller Pool에 해당하는 Controller들 간의 상태와 Timestamp, Lag 정보 확인 가능
+
+<br>
+
+<p align="center">
+    <img src="./pic/check_controller.png"/>
+</p>
 
 <br>
 
