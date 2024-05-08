@@ -140,9 +140,9 @@ cd 01_setup_kafka_cluster
 <br>
 
 Broker Cluster 구동 및 Log 디렉토리 지정
-- Node 1(/home/workspace/kafka_2.13-3.5.0/logs/server_1)
-- Node 2(/home/workspace/kafka_2.13-3.5.0/logs/server_2)
-- Node 2(/home/workspace/kafka_2.13-3.5.0/logs/server_3)
+- Node 1(/home/codespace/kafka_2.13-3.7.0/logs/server_1)
+- Node 2(/home/codespace/kafka_2.13-3.7.0/logs/server_2)
+- Node 2(/home/codespace/kafka_2.13-3.7.0/logs/server_3)
 
 <br>
 
