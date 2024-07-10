@@ -743,7 +743,12 @@ cd 07_consumer_group_management
 
 <br>
 
-종료 이후에도 Consumer Group 정보는 __consumer_offset에 존재한다. 이를 AKHQ 혹은 UI for Apache Kafka를 통해서 확인할 수 있다.
+> 종료 이후에도 Consumer Group 정보는 __consumer_offset에 존재한다.
+> Consumer Group 정보는 Group 멤버가 하나도 존재하지 않는다면, Kafka 브로커의 **offsets.retention.minutes**(default: 10080) 값 만큼 기다리다가 삭제된다.
+
+<br>
+
+Consumer Group 정보는 AKHQ 혹은 UI for Apache Kafka를 통해서 확인할 수 있다.
 
 <p align="center">
     <img src="./pic/21_consumer_group.png"/>
