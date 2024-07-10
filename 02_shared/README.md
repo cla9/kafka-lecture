@@ -757,7 +757,7 @@ Consumer Group 정보는 AKHQ 혹은 UI for Apache Kafka를 통해서 확인할 
 
 <br>
 
-### 7.2 Offset Rest 수행하기(latest)
+### 7.2 Offset Reset 수행하기(latest)
 
 <br>
 
