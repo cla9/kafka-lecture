@@ -12,6 +12,7 @@
 5. [Multi json 데이터 한번에 발행하기](#5-multi-json-data-테스트하기)
 6. [Up & Down 게임](#6-up--down-game)
 7. [Consumer Group 관리](#7-consumer-group-관리)
+8. [실습 환경 정리](#8-consumer--produce-전체-실습-중지)
 
 <br>
 
@@ -728,6 +729,8 @@ cd 07_consumer_group_management
 
 1. kafka-consumer-test 토픽에 대해 Consumer Group NickName으로 구독을 수행한다.
 
+<br>
+
 ```
 ./01_consume.sh
 ```
@@ -738,12 +741,22 @@ cd 07_consumer_group_management
 
 실행된 프로그램을 Ctrl + C를 입력하여 종료한다.
 
+<br>
+
+종료 이후에도 Consumer Group 정보는 __consumer_offset에 존재한다. 이를 AKHQ 혹은 UI for Apache Kafka를 통해서 확인할 수 있다.
+
+<p align="center">
+    <img src="./pic/21_consumer_group.png"/>
+</p>
+
 
 <br>
 
 ### 7.2 Offset Rest 수행하기(latest)
 
-실습 전 강사가 kafka-consumer-test 그룹에 대해서 임의의 메시지 몇개를 발행한다.
+<br>
+
+> 실습 전 강사가 kafka-consumer-test 그룹에 대해서 임의의 메시지 몇개를 발행한다. 이를 통해 생성한 Consumer Group  **lag**를 만드는 것을 목표로 한다.
 
 <br>
 
@@ -756,14 +769,31 @@ cd 07_consumer_group_management
 
 <br>
 
+<p align="center">
+    <img src="./pic/22_consumer_group_description.png"/>
+</p>
+
+<br>
+
 2. Lag offset을 최신으로 reset한다.
+
+<br>
 
 ```
 ./03_reset_offset.sh
 ```
 
-Offset을 Reset하기 위해서는 대상 Consumer Group의 애플리케이션은 종료해야한다.
+> ※ Offset을 Reset하기 위해서는 대상 Consumer Group의 애플리케이션은 종료해야한다.
 
+<br>
+
+<p align="center">
+    <img src="./pic/23_reset_consumer_group_offset.png"/>
+</p>
+
+<br>
+
+Offset Reset에는 다양한 옵션이 존재하므로 상황에 따라서 옵션을 달리 선택하여 초기화를 진행할 수 있다.
 
 |옵션|설명|
 |-------|---|
@@ -782,6 +812,12 @@ Offset을 Reset하기 위해서는 대상 Consumer Group의 애플리케이션�
 ./02_check_consumer_group.sh
 ```
 
+<p align="center">
+    <img src="./pic/24_check_latest_consumer_group_offset.png"/>
+</p>
+
+Offset을 최신으로 돌려놨기 때문에, 초기화한 이후에 별도로 메시지를 Produce 하지 않는 이상 Lag는 0이다.
+
 <br>
 
 ### 7.3 Consumer Group 상태 확인
@@ -792,7 +828,16 @@ Offset을 Reset하기 위해서는 대상 Consumer Group의 애플리케이션�
 ./04_list_consumer_group_simple_state.sh
 ```
 
+<p align="center">
+    <img src="./pic/25_list_consumer_group_simple_state.png"/>
+</p>
+
 출력 결과 Group과 현재 상태를 간단히 확인할 수 있다.
+
+<br>
+
+Consumer Group은 내부에 여러가지 상태(**State**)가 존재하며, 상태 종류는 다음과 같다.
+자세한 내용은 부록에 포함되어 있다.
 
 <p align="center">
     <img src="./pic/20_consumer_group_state.png"/>
@@ -805,6 +850,10 @@ Offset을 Reset하기 위해서는 대상 Consumer Group의 애플리케이션�
 ```
 ./05_list_consumer_group_state.sh
 ```
+
+<p align="center">
+    <img src="./pic/26_list_detailed_consumer_group_state.png"/>
+</p>
 
 <br>
 
@@ -819,6 +868,10 @@ Consumer Group 삭제를 위해서는 대상 Consumer Group의 애플리케이�
 ./06_remove_consumer_groups.sh
 ```
 
+<p align="center">
+    <img src="./pic/27_remove_consumer_group.png"/>
+</p>
+
 <br>
 
 2. Consumer Group 상태를 확인한다.
@@ -827,5 +880,27 @@ Consumer Group 삭제를 위해서는 대상 Consumer Group의 애플리케이�
 ./02_check_consumer_group.sh
 ```
 
+<p align="center">
+    <img src="./pic/28_consumer_group_state.png"/>
+</p>
+
 <br>
 
+### 7.5 실습 중지
+
+상위 디렉토리 이동
+
+```
+cd ..
+```
+
+---
+
+## 8. Consumer & Produce 전체 실습 중지
+
+
+1. 상위 디렉토리 이동
+
+```
+cd ..
+```
