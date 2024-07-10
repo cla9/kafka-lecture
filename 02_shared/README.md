@@ -11,6 +11,7 @@
 4. [Consumer Group 테스트하기](#4-consumer-group-테스트하기)
 5. [Multi json 데이터 한번에 발행하기](#5-multi-json-data-테스트하기)
 6. [Up & Down 게임](#6-up--down-game)
+7. [Consumer Group 관리](#7-consumer-group-관리)
 
 <br>
 
@@ -710,3 +711,121 @@ cd ..
 ```
 
 <br>
+
+---
+
+## 7. Consumer Group 관리
+
+<br>
+
+실습 디렉토리 이동
+
+```
+cd 07_consumer_group_management
+```
+
+### 7.1 Nickname Consumer Group으로 토픽 구독하기
+
+1. kafka-consumer-test 토픽에 대해 Consumer Group NickName으로 구독을 수행한다.
+
+```
+./01_consume.sh
+```
+
+<br>
+
+2. Consume 중지하기
+
+실행된 프로그램을 Ctrl + C를 입력하여 종료한다.
+
+
+<br>
+
+### 7.2 Offset Rest 수행하기(latest)
+
+실습 전 강사가 kafka-consumer-test 그룹에 대해서 임의의 메시지 몇개를 발행한다.
+
+<br>
+
+
+1. Lag 상태를 확인한다.
+
+```
+./02_check_consumer_group.sh
+```
+
+<br>
+
+2. Lag offset을 최신으로 reset한다.
+
+```
+./03_reset_offset.sh
+```
+
+Offset을 Reset하기 위해서는 대상 Consumer Group의 애플리케이션은 종료해야한다.
+
+
+|옵션|설명|
+|-------|---|
+|--shift-by| 지정된 숫자만큼 Consumer Group의 Offset을 변경한다. 가령 -2를 입력했을 경우 현재 offset 보다 -2의 위치로 offset을 이동한다.|
+|--by-duration|지정된 기간만큼 현재의 Timestamp 로부터 Offset을 변경한다. ※ Format: 'PnDTnHnMnS'|
+|--to-earliest|해당 토픽이 지닌 가장 오래된 Offset으로 변경한다.|
+|--to-latest|해당 토픽이 지닌 가장 최신의 OFfset으로 변경한다.|
+|--to-ffset|지정된 Offset 값으로 변경한다.|
+
+
+<br>
+
+3. Lag 상태를 확인한다.
+
+```
+./02_check_consumer_group.sh
+```
+
+<br>
+
+### 7.3 Consumer Group 상태 확인
+
+1. Consumer Group의 상태를 간단하게 확인한다.
+
+```
+./04_list_consumer_group_simple_state.sh
+```
+
+출력 결과 Group과 현재 상태를 간단히 확인할 수 있다.
+
+<p align="center">
+    <img src="./pic/20_consumer_group_state.png"/>
+</p>
+
+<br>
+
+2. Consumer Group의 상태를 자세하게 확인한다.
+
+```
+./05_list_consumer_group_state.sh
+```
+
+<br>
+
+### 7.4 Consumer Group 삭제
+
+Consumer Group 삭제를 위해서는 대상 Consumer Group의 애플리케이션은 종료해야한다.
+
+
+1. Consumer Group을 삭제한다.
+
+```
+./06_remove_consumer_groups.sh
+```
+
+<br>
+
+2. Consumer Group 상태를 확인한다.
+
+```
+./02_check_consumer_group.sh
+```
+
+<br>
+
